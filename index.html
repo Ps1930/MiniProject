@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Flask App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        h2 {
+            color: #555;
+            margin-top: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            animation: fadeIn 1s ease-out;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .image-placeholder {
+            width: 150px;
+            height: 150px;
+            background-color: #eee;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Prediction App</h1>
+
+    {% if prediction %}
+        <h2><strong>Predicted Class:</strong> {{ prediction }}</h2>
+    {% else %}
+        <h2>No prediction available.</h2>
+    {% endif %}
+
+    {% if scores %}
+        <h2>Scores:</h2>
+        <ul>
+            {% for score in scores %}
+                <li>{{ score }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h2>No scores available.</h2>
+    {% endif %}
+
+    <!-- Form for image upload -->
+    <form action="/" method="post" enctype="multipart/form-data">
+        <label for="image">Choose an image:</label>
+        <input type="file" id="image" name="image" accept="image/*">
+        <br>
+        <input type="submit" value="Upload and Predict">
+    </form>
+
+<!-- Image placeholders with animations -->
+<div class="image-container">
+  <a href="https://en.wikipedia.org/wiki/Brain_tumor" target="_blank"><img src="https://www.mayoclinic.org/-/media/kcms/gbs/patient-consumer/images/2019/01/11/10/47/medulloblastoma-8col-3802786-003-0.jpg" alt="Image 1" width="250" height="200"></a>
+  <a href="https://en.wikipedia.org/wiki/Glioma" target="_blank"><img src="https://www.mayoclinic.org/-/media/kcms/gbs/patient-consumer/images/2015/03/02/10/52/mcdc7_glioma-8col.jpg" alt="Image 2" width="200" height="200"></a>
+  <a href="https://simple.wikipedia.org/wiki/Pituitary_adenoma" target="_blank"><img src="https://www.researchgate.net/publication/297679857/figure/fig1/AS:456514885427201@1485853038586/Position-of-the-Pituitary-Gland-in-the-Head-With-permission-from-the-Pituitary-Society_Q640.jpg" alt="Image 3" width="200" height="200"></a>
+  <a href="https://my.clevelandclinic.org/health/diseases/17858-meningioma" target="_blank"><img src="https://th.bing.com/th/id/OIP.6UpdTjkAuG1Box9E5m4LNwHaGQ?rs=1&pid=ImgDetMain" alt="Image 4" width="200" height="200"></a>
+</div>
+</body>
+</html>
